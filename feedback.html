@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback - Encuesta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="incidencias.html">Reportar Bug</a>
+        <a href="feedback.html">Encuesta Feedback</a>
+    </nav>
+
+    <div class="container">
+        <h1>Encuesta de Satisfacción</h1>
+        <p>Tu opinión es vital para pasar de la fase Beta a la versión final.</p>
+
+        <form id="feedbackForm">
+            <label>1. Facilidad de Instalación (1 = Muy difícil, 5 = Muy fácil)</label>
+            <select id="instalacion" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="1">1 - Muy difícil</option>
+                <option value="2">2 - Difícil</option>
+                <option value="3">3 - Normal</option>
+                <option value="4">4 - Fácil</option>
+                <option value="5">5 - Muy intuitivo</option>
+            </select>
+
+            <label>2. ¿La interfaz gráfica (GUI) mejora tu velocidad de gestión?</label>
+            <select id="utilidad_gui" required>
+                <option value="Si">Sí, es más rápido</option>
+                <option value="No">No, prefiero comandos</option>
+                <option value="Igual">Es igual</option>
+            </select>
+
+            <label>3. Estabilidad: ¿Has experimentado caídas o errores visuales?</label>
+            <textarea id="estabilidad" placeholder="Describe si tuviste lag, crasheos o items bugeados..." style="height: 80px;"></textarea>
+
+            <label>4. ¿Qué funcionalidad crítica echas en falta? (Comparado con LuckPerms, etc.)</label>
+            <textarea id="faltante" placeholder="Me gustaría que tuviera..." required></textarea>
+
+            <label>5. NPS: ¿Recomendarías este plugin a otro admin? (0 a 10)</label>
+            <input type="number" id="nps" min="0" max="10" placeholder="0 - 10" required>
+
+            <button type="submit" class="btn-action">Enviar Encuesta</button>
+        </form>
+    </div>
+
+    <footer>&copy; 2025 - Sergio CM - Proyecto Intermodular</footer>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Paramos el envío real para demo
+
+            // Recogemos el valor del NPS para dar un mensaje personalizado
+            var nps = document.getElementById('nps').value;
+            
+            if(nps >= 9) {
+                alert("¡Gracias por tu excelente puntuación! Nos alegra que te guste.");
+            } else if (nps <= 6) {
+                alert("Gracias. Revisaremos tus comentarios para mejorar lo que falta.");
+            } else {
+                alert("Gracias por tu feedback, seguiremos trabajando.");
+            }
+            
+            // Aquí resetearíamos el formulario
+            document.getElementById('feedbackForm').reset();
+        });
+    </script>
+</body>
+</html>

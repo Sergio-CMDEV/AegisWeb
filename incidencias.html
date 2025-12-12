@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Incidencias - Reporte</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="incidencias.html">Reportar Bug</a>
+        <a href="feedback.html">Encuesta Feedback</a>
+    </nav>
+
+    <div class="container">
+        <h1>Gestión de Incidencias</h1>
+        
+        <div class="nota-info">
+            <strong>Procedimiento:</strong> Completa esta plantilla estandarizada para ayudarnos a corregir el error más rápido.
+        </div>
+
+        <form id="bugForm">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" placeholder="Resumen breve del fallo" required>
+
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" placeholder="Explicación detallada del comportamiento observado vs esperado." required></textarea>
+
+            <label for="pasos">Pasos para Reproducir:</label>
+            <textarea id="pasos" placeholder="1. Entrar al servidor&#10;2. Ejecutar el comando /plugin&#10;3. ..." required></textarea>
+
+            <h2>Entorno del Servidor</h2>
+            
+            <label for="version_server">Versión del Servidor:</label>
+            <input type="text" id="version_server" placeholder="Ej: Paper 1.20.4" required>
+
+            <label for="version_java">Versión de Java:</label>
+            <input type="text" id="version_java" placeholder="Ej: Java 17">
+
+            <label for="otros_plugins">Lista de otros plugins (opcional):</label>
+            <textarea id="otros_plugins" placeholder="EssentialsX, Vault, etc." style="height: 60px;"></textarea>
+
+            <label for="logs">Logs / Stacktrace (Consola):</label>
+            <textarea id="logs" class="logs-area" placeholder="Copia aquí el error de la consola..."></textarea>
+
+            <label for="prioridad">Prioridad:</label>
+            <select id="prioridad">
+                <option value="Baja">Baja</option>
+                <option value="Media" selected>Media</option>
+                <option value="Alta">Alta</option>
+                <option value="Critica">Crítica</option>
+            </select>
+
+            <button type="submit" class="btn-action">Generar Reporte</button>
+        </form>
+    </div>
+
+    <footer>&copy; 2025 - Sergio CM - Proyecto Intermodular</footer>
+
+    <script>
+        document.getElementById('bugForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var titulo = document.getElementById('titulo').value;
+            var desc = document.getElementById('descripcion').value;
+            var pasos = document.getElementById('pasos').value;
+            
+            // Campos de entorno recuperados
+            var verServer = document.getElementById('version_server').value;
+            var verJava = document.getElementById('version_java').value;
+            var plugins = document.getElementById('otros_plugins').value;
+            
+            var logs = document.getElementById('logs').value;
+            var prioridad = document.getElementById('prioridad').value;
+
+            var reporteFinal = 
+                "**Título:** " + titulo + "\n\n" +
+                "**Descripción:**\n" + desc + "\n\n" +
+                "**Pasos para Reproducir:**\n" + pasos + "\n\n" +
+                "**Entorno:**\n" +
+                "- Server: " + verServer + "\n" +
+                "- Java: " + verJava + "\n" +
+                "- Plugins: " + plugins + "\n\n" +
+                "**Logs:**\n```\n" + logs + "\n```\n\n" +
+                "**Prioridad:** " + prioridad;
+
+            alert("Reporte generado (listo para copiar):\n\n" + reporteFinal);
+        });
+    </script>
+</body>
+</html>
